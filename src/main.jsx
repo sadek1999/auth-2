@@ -7,10 +7,28 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Home from './components/Home.jsx';
+import Main from './components/Main.jsx';
+import Singup from './components/Singup.jsx';
+import SingIn from './components/SingIn.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Main></Main>,
+    children:[
+      {
+        path:'/',
+        element:<Home></Home>
+      },
+      {
+        path:'/singup',
+        element:<Singup></Singup>
+      },
+      {
+        path:"/singin",
+        element:<SingIn></SingIn>
+      }
+    ]
   },
 ]);
 
