@@ -11,6 +11,7 @@ import Home from './components/Home.jsx';
 import Main from './components/Main.jsx';
 import Singup from './components/Singup.jsx';
 import SingIn from './components/SingIn.jsx';
+import AuthProvider from './components/AuthProvider.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +35,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+  <AuthProvider>
+  <RouterProvider router={router} />
+  </AuthProvider>
   </React.StrictMode>,
 )
