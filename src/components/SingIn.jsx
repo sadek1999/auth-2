@@ -1,19 +1,34 @@
-import React from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useContext } from 'react';
+import auth from './fairbase/firebase.config';
+import { authContext } from './AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
-const SingIn = () => {
-   const handlSubmit=e=>{
-    e.preventDefault()
-    const email=e.target.email.value;
-    const password=e.target.password.value;
- console.log(email,password)
-   }
+const SingIn = () =>{ 
+    const navegat=useNavigate()
+ 
+const { usersingin}=useContext(authContext)
+
+    const handlSubmit = e => {
+        e.preventDefault()
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        e.target.reset()
+        console.log(email, password)
+        usersingin(email, password)
+            .then(result => {
+                console.log('sing in successfully', result)
+                navegat('/')
+            })
+            .catch(error => console.error(error))
+    }
 
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col ">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Sing in now!</h1>
-                    
+
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form className="card-body" onSubmit={handlSubmit}>
@@ -33,7 +48,7 @@ const SingIn = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <input type="submit" value="Sing in" className='btn btn-primary'/>
+                            <input type="submit" value="Sing in" className='btn btn-primary' />
                         </div>
                     </form>
                 </div>

@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { authContext } from './AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Singup = () => {
+    const navegat=useNavigate()
 
-
+    const { creatUser } = useContext(authContext)
     const handlSubmit = e => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value;
+        e.target.reset()
         console.log(email, password)
+        creatUser(email, password)
+            .than(result => {
+                console.log('successfully add the user', result)
+                navegat('/')
+            })
+            .catch(error => console.error(error))
+            
     }
 
 

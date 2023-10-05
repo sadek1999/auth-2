@@ -12,6 +12,8 @@ import Main from './components/Main.jsx';
 import Singup from './components/Singup.jsx';
 import SingIn from './components/SingIn.jsx';
 import AuthProvider from './components/AuthProvider.jsx';
+import Profile from './components/Profile.jsx';
+import Private from './components/Private.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +30,10 @@ const router = createBrowserRouter([
       {
         path:"/singin",
         element:<SingIn></SingIn>
+      },
+      {
+        path:'/profile',
+        element:<Private><Profile></Profile></Private>
       }
     ]
   },
